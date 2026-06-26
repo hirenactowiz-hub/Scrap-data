@@ -38,15 +38,15 @@
         "season_label": str,  data[1].data.shelves[1].header.seasons[0].title       # Human-readable selector key (e.g., 'Season 1')
         "total_episodes_count": int, data[1].data.shelves[1].header.seasons[0].episodeCount   # Total counted episodes within this specific season
         "episodes": list[{
-            "episode_number": int, data[1].data.shelves[1].items[6].tag      # Chronological ordering counter index
-            "episode_title": str, data[1].data.shelves[1].items[6].title      # Custom episode specific title
-            "episode_url": str,  data[1].data.shelves[1].items[5].contextAction.url       # Direct navigation launch or deep play asset URL
-            "thumbnail_url": str, data[1].data.shelves[1].items[5].artwork.template also format this type ""template": "https://is1-ssl.mzstatic.com/image/thumb/r1heTTebrcs3xunpqHVwGg/{w}x{h}KF.TVALC02.{f}?color=241B0F" also cosider this parameter
+            "episode_number": int, data.playables.tvs.sbd.4000:A0019602007:978645c3.canonicalMetadata.episodeNumber    # Chronological ordering counter index
+            "episode_title": str,  data.playables.tvs.sbd.4000:A0019602007:978645c3.canonicalMetadata.episodeTitle   # Custom episode specific title
+            "episode_url": str,  data.episodes[6].url       # Direct navigation launch or deep play asset URL
+            "thumbnail_url": str, data.episodes[6].images.contentImage.url also format this type ""template": "https://is1-ssl.mzstatic.com/image/thumb/r1heTTebrcs3xunpqHVwGg/{w}x{h}KF.TVALC02.{f}?color=241B0F" also cosider this parameter
                   data[1].data.shelves[1].items[5].artwork.width and data[1].data.shelves[1].items[5].artwork.height      # Direct image hosting link for frame thumbnail
-            "synopsis": str, data[1].data.shelves[1].items[5].description           # Brief plot setup details
-            "content_rating": str,    data[0].data.configuration.applicationProps.ratings.IN_TV.IN_TV_UA_16Plus.displayValue  # Age classification value
+            "synopsis": str, data.episodes[6].description           # Brief plot setup details
+            "content_rating": str,    data.episodes[6].rating.displayName  # Age classification value
             "duration": str,   data[1].data.shelves[1].items[5].metadata         # Total tracking watch duration value
-            "release_date": str         # Regional catalog publishing string representation
+            "release_date": str   data.episodes[5].releaseDate      # Regional catalog publishing string representation
         }]
     }]
 }

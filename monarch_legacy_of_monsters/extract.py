@@ -7,6 +7,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 INPUT_1 = os.path.join(BASE_DIR, "monarch_1.json")   # episode-detail dump (Season 1, complete)
 INPUT_2 = os.path.join(BASE_DIR, "monarch_2.json")   # show-page dump (series info + partial episode window)
+INPUT_3 = os.path.join(BASE_DIR, "monarch_3.json")   # episode-detail dump (Season 2, complete)
 OUTPUT = os.path.join(BASE_DIR, "monarch_legacy_of_monsters_output.json")
 
 
@@ -102,6 +103,8 @@ def main():
         file1 = json.load(f)
     with open(INPUT_2, "r", encoding="utf-8") as f:
         file2 = json.load(f)
+    with open(INPUT_3, "r", encoding="utf-8") as f:
+        file3 = json.load(f)
 
     show_intent = file2["data"][1]["data"]
     config_data = file2["data"][0]["data"]
@@ -179,7 +182,6 @@ def main():
                 producers.append(name)
             else:
                 cast.append(name)
-                # cast.append(name if name else continue)
 
     # ---------- Trailers & Bonus Content shelves ----------
     trailers_and_bonus = []
@@ -201,7 +203,6 @@ def main():
     # Season 1: complete + authoritative, comes from file1 (episode detail dump)
     season1_episodes = []
     file1_episodes = file1.get("data", {}).get("episodes", [])
-    file1_titles = set()
     for ep in file1_episodes:
         images = ep.get("images", {}).get("contentImage", {})
         season1_episodes.append({
@@ -214,35 +215,28 @@ def main():
             "duration": seconds_to_minutes_label(ep.get("duration")),
             "release_date": epoch_ms_to_date(ep.get("releaseDate")),
         })
-        file1_titles.add(ep.get("title", "").strip().lower())
 
     season1_episodes.sort(key=lambda e: e["episode_number"])
 
-    # Season 2 (partial): any episode-tagged item from file2's Episodes shelf
-    # whose title ISN'T already covered by file1 (i.e. not a Season-1 re-listing)
+    # Season 2: complete + authoritative, comes from file3 (episode detail dump)
     season2_episodes = []
+    file3_episodes = file3.get("data", {}).get("episodes", [])
+    for ep in file3_episodes:
+        images = ep.get("images", {}).get("contentImage", {})
+        season2_episodes.append({
+            "episode_number": ep.get("episodeNumber"),
+            "episode_title": ep.get("title"),
+            "episode_url": ep.get("url"),
+            "thumbnail_url": format_image_url(images.get("url"), images.get("width"), images.get("height")),
+            "synopsis": ep.get("description"),
+            "content_rating": safe_get(ep, ["rating", "displayName"]),
+            "duration": seconds_to_minutes_label(ep.get("duration")),
+            "release_date": epoch_ms_to_date(ep.get("releaseDate")),
+        })
+
+    season2_episodes.sort(key=lambda e: e["episode_number"])
+
     episodes_shelf = shelves_by_header_title.get("Episodes")
-    if episodes_shelf:
-        for item in episodes_shelf.get("items", []):
-            if item.get("type") != "Episode":
-                continue
-            ep_title = item.get("title")
-            if not ep_title or ep_title.strip().lower() in file1_titles:
-                continue  # already have this one (and it's more complete) from file1
-            artwork = item.get("artwork", {})
-            season2_episodes.append({
-                "episode_number": parse_tag_number(item.get("tag")),
-                "episode_title": ep_title,
-                "episode_url": safe_get(item, ["contextAction", "url"]),
-                "thumbnail_url": format_image_url(artwork.get("template"), artwork.get("width"), artwork.get("height")),
-                "synopsis": item.get("description"),
-                "content_rating": None,   # not present in source data for these items
-                "duration": item.get("metadata"),
-                "release_date": None,     # not present in source data for these items
-            })
-
-    season2_episodes.sort(key=lambda e: (e["episode_number"] is None, e["episode_number"]))
-
     seasons_meta = {s["seasonNumber"]: s for s in safe_get(episodes_shelf, ["header", "seasons"], [])} if episodes_shelf else {}
 
     seasons_output = []
@@ -253,15 +247,9 @@ def main():
             "episodes": season1_episodes,
         })
     if season2_episodes:
-        official_count = seasons_meta.get(2, {}).get("episodeCount")
         seasons_output.append({
             "season_label": seasons_meta.get(2, {}).get("title", "Season 2"),
             "total_episodes_count": len(season2_episodes),
-            "total_episodes_count_official": official_count,
-            # "note": (
-            #     f"Only {len(season2_episodes)} of {official_count} Season 2 episodes are present "
-            #     "in the supplied source files; episodes 7-10 are not included in either JSON dump."
-            # ) if official_count and official_count > len(season2_episodes) else None,
             "episodes": season2_episodes,
         })
 
@@ -289,7 +277,6 @@ def main():
         },
         "trailers_and_bonus": trailers_and_bonus,
         "seasons": seasons_output,
-        # "content_rating": content_rating,
     }
 
     os.makedirs(os.path.dirname(OUTPUT), exist_ok=True)
