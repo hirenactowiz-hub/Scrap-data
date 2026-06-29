@@ -10,12 +10,13 @@ INPUT_2 = os.path.join(BASE_DIR, "monarch_2.json")   # show-page dump (series in
 INPUT_3 = os.path.join(BASE_DIR, "monarch_3.json")   # episode-detail dump (Season 2, complete)
 OUTPUT = os.path.join(BASE_DIR, "monarch_legacy_of_monsters_output.json")
 
+# EXISTING UTILITY FUNCTIONS
 
 def safe_get(obj, keys, default=None):
     for key in keys:
         if isinstance(obj, dict):
             obj = obj.get(key, default)
-        elif isinstance(obj, list) and isinstance(key, int):
+        elif isinstance(obj, list) and isinstance(key, int):  # <-- Fixed this line
             try:
                 obj = obj[key]
             except IndexError:
@@ -26,10 +27,7 @@ def safe_get(obj, keys, default=None):
             return default
     return obj
 
-
 def format_image_url(template, width=None, height=None, fmt="jpg"):
-    """Fill in the {w}/{h}/{f} placeholders WITHOUT touching the rest of the
-    URL (including its real ?color=XXXXXX query string)."""
     if not template:
         return None
     w = width or 3840
@@ -42,7 +40,6 @@ def format_image_url(template, width=None, height=None, fmt="jpg"):
 
 
 def parse_tag_number(tag):
-    """'EPISODE 6' -> 6"""
     if not tag:
         return None
     m = re.search(r"\d+", str(tag))
@@ -52,7 +49,7 @@ def parse_tag_number(tag):
 def seconds_to_minutes_label(seconds):
     if seconds is None:
         return None
-    if seconds > 10000:  # guard against ms values
+    if seconds > 10000:
         seconds = seconds / 1000.0
     return f"{int(round(seconds / 60))} min"
 
@@ -65,16 +62,8 @@ def epoch_ms_to_date(epoch_ms):
 
 
 def parse_language_string(raw):
-    """Turns 'English (CC, SDH), French (Canada) (SDH), Chinese, Traditional (SDH)'
-    into ['English', 'French (Canada)', 'Chinese, Traditional'].
-
-    Splits on top-level commas only (commas *inside* parentheses, e.g. the
-    "(CC, SDH)" qualifier, are NOT split points). A few language names
-    legitimately contain a comma (e.g. "Chinese, Simplified"), so those are
-    protected with a placeholder before splitting, then restored."""
     if not raw:
         return []
-
     compounds = ["Chinese, Simplified", "Chinese, Traditional", "Cantonese, Traditional"]
     placeholder_map = {}
     protected = raw
@@ -83,61 +72,58 @@ def parse_language_string(raw):
         placeholder_map[token] = c
         protected = protected.replace(c, token)
 
-    # Split on commas that are NOT inside parentheses
     parts = re.split(r",\s*(?![^(]*\))", protected)
-
     cleaned = []
     for part in parts:
         name = part.strip()
         for token, original in placeholder_map.items():
             name = name.replace(token, original)
-        # Strip trailing technical-qualifier parens: (AD, ...), (CC, SDH), (SDH)
         name = re.sub(r"\s*\((?:AD|CC|SDH)[^)]*\)\s*$", "", name).strip()
         if name and name not in cleaned:
             cleaned.append(name)
     return cleaned
 
+# NEW MODULAR DATA EXTRACTION FUNCTIONS
 
-def main():
+def load_source_files():
+    """Loads and returns the three input JSON structures."""
     with open(INPUT_1, "r", encoding="utf-8") as f:
         file1 = json.load(f)
     with open(INPUT_2, "r", encoding="utf-8") as f:
         file2 = json.load(f)
     with open(INPUT_3, "r", encoding="utf-8") as f:
         file3 = json.load(f)
+    return file1, file2, file3
 
-    show_intent = file2["data"][1]["data"]
-    config_data = file2["data"][0]["data"]
-    shelves = show_intent["shelves"]
 
-    shelves_by_header_title = {}
-    for s in shelves:
-        t = safe_get(s, ["header", "title"])
-        if t:
-            shelves_by_header_title[t] = s
-
-    # ---------- Series-level hero info (shelf with SuperheroLockup) ----------
+def parse_series_hero_info(shelves, show_intent):
+    """Extracts base series identification, URLs, titles, and synopses."""
     hero = shelves[0]["items"][0]
     series_id = safe_get(hero, ["buttons", 0, "action", "actionMetrics", "data", 0, "fields", "canonicalId"])
     title = hero.get("title")
     synopsis = hero.get("description")
     series_url = show_intent.get("canonicalURL")
+    return series_id, title, synopsis, series_url
 
-    # ---------- About shelf (genres) ----------
+
+def parse_genres(shelves):
+    """Extracts listed genres from the About shelf."""
     about_shelf = next((s for s in shelves if s.get("$type") == "About"), None)
-    genres = []
-    if about_shelf:
-        genres = safe_get(about_shelf, ["items", 0, "genres"], [])
+    return safe_get(about_shelf, ["items", 0, "genres"], []) if about_shelf else []
 
-    # ---------- Info shelf (release year, rating, content advisories, languages) ----------
+
+def parse_info_shelf_metadata(shelves, file1):
+    """Parses core technical metadata like rating, languages, and release year."""
     info_shelf = next((s for s in shelves if s.get("$type") == "Info"), None)
     release_year = None
     content_rating = None
     content_advisory = []
-    audio_languages = []
     subtitles = []
+
     if info_shelf:
         groups = {g.get("title"): g for g in info_shelf.get("items", [])}
+        
+        # Parse Information Section
         info_group = groups.get("Information", {}).get("items", [])
         for entry in info_group:
             if entry.get("id") == "information-releaseDate":
@@ -149,26 +135,29 @@ def main():
             elif entry.get("id") == "information-contentRatingAdvisories":
                 content_advisory = [a.strip() for a in entry.get("info", "").split(",") if a.strip()]
 
+        # Parse Subtitles
         lang_group = groups.get("Languages", {}).get("items", [])
         for entry in lang_group:
             if entry.get("id") == "languages-subtitles":
                 subtitles = parse_language_string(entry.get("info", ""))
 
-    # Audio languages: use the per-episode playable tracks from file1 (authoritative,
-    # confirmed identical across every episode) plus the original spoken language.
+    # Parse Audio Languages
     playables = file1.get("data", {}).get("playables", {})
-    original_lang = None
     audio_set = []
     if playables:
         first_playable = next(iter(playables.values()))
         audio_set = [t.get("displayName") for t in first_playable.get("audioTrackLocales", []) if t.get("displayName")]
+    
     first_ep = safe_get(file1, ["data", "episodes", 0], {})
     original_langs = first_ep.get("originalSpokenLanguages", [])
-    if original_langs:
-        original_lang = original_langs[0].get("displayName")
+    original_lang = original_langs[0].get("displayName") if original_langs else None
     audio_languages = ([original_lang] if original_lang else []) + [l for l in audio_set if l != original_lang]
 
-    # ---------- Cast & Crew shelf ----------
+    return release_year, content_rating, content_advisory, subtitles, audio_languages
+
+
+def parse_cast_and_crew(shelves_by_header_title):
+    """Extracts talent lists categorized by their cast or crew role."""
     cast_shelf = shelves_by_header_title.get("Cast & Crew")
     producers = []
     cast = []
@@ -182,8 +171,11 @@ def main():
                 producers.append(name)
             else:
                 cast.append(name)
+    return producers, cast
 
-    # ---------- Trailers & Bonus Content shelves ----------
+
+def parse_trailers_and_bonus(shelves_by_header_title):
+    """Extracts supplementary video links and marketing materials."""
     trailers_and_bonus = []
     for shelf_name in ("Trailers", "Bonus Content"):
         shelf = shelves_by_header_title.get(shelf_name)
@@ -198,14 +190,16 @@ def main():
                 "content_rating": None,
                 "duration": item.get("metadata"),
             })
+    return trailers_and_bonus
 
-    # ---------- Episodes ----------
-    # Season 1: complete + authoritative, comes from file1 (episode detail dump)
-    season1_episodes = []
-    file1_episodes = file1.get("data", {}).get("episodes", [])
-    for ep in file1_episodes:
+
+def extract_episodes(file_data):
+    """Generic parser for cleaning and extraction of individual episode objects."""
+    episodes = []
+    file_episodes = file_data.get("data", {}).get("episodes", [])
+    for ep in file_episodes:
         images = ep.get("images", {}).get("contentImage", {})
-        season1_episodes.append({
+        episodes.append({
             "episode_number": ep.get("episodeNumber"),
             "episode_title": ep.get("title"),
             "episode_url": ep.get("url"),
@@ -215,27 +209,34 @@ def main():
             "duration": seconds_to_minutes_label(ep.get("duration")),
             "release_date": epoch_ms_to_date(ep.get("releaseDate")),
         })
+    episodes.sort(key=lambda e: e["episode_number"])
+    return episodes
 
-    season1_episodes.sort(key=lambda e: e["episode_number"])
+# MAIN EXECUTION FLOW
 
-    # Season 2: complete + authoritative, comes from file3 (episode detail dump)
-    season2_episodes = []
-    file3_episodes = file3.get("data", {}).get("episodes", [])
-    for ep in file3_episodes:
-        images = ep.get("images", {}).get("contentImage", {})
-        season2_episodes.append({
-            "episode_number": ep.get("episodeNumber"),
-            "episode_title": ep.get("title"),
-            "episode_url": ep.get("url"),
-            "thumbnail_url": format_image_url(images.get("url"), images.get("width"), images.get("height")),
-            "synopsis": ep.get("description"),
-            "content_rating": safe_get(ep, ["rating", "displayName"]),
-            "duration": seconds_to_minutes_label(ep.get("duration")),
-            "release_date": epoch_ms_to_date(ep.get("releaseDate")),
-        })
+def main():
+    # 1. Load IO Data
+    file1, file2, file3 = load_source_files()
 
-    season2_episodes.sort(key=lambda e: e["episode_number"])
+    # 2. Extract layout buckets (shelves)
+    show_intent = file2["data"][1]["data"]
+    shelves = show_intent["shelves"]
+    shelves_by_header_title = {
+        safe_get(s, ["header", "title"]): s for s in shelves if safe_get(s, ["header", "title"])
+    }
 
+    # 3. Process components using modular sub-functions
+    series_id, title, synopsis, series_url = parse_series_hero_info(shelves, show_intent)
+    genres = parse_genres(shelves)
+    release_year, content_rating, content_advisory, subtitles, audio_languages = parse_info_shelf_metadata(shelves, file1)
+    producers, cast = parse_cast_and_crew(shelves_by_header_title)
+    trailers_and_bonus = parse_trailers_and_bonus(shelves_by_header_title)
+
+    # 4. Process Season Episodes (reusing the same function)
+    season1_episodes = extract_episodes(file1)
+    season2_episodes = extract_episodes(file3)
+
+    # 5. Build Season Meta wrappers
     episodes_shelf = shelves_by_header_title.get("Episodes")
     seasons_meta = {s["seasonNumber"]: s for s in safe_get(episodes_shelf, ["header", "seasons"], [])} if episodes_shelf else {}
 
@@ -255,6 +256,7 @@ def main():
 
     total_seasons_count = f"{len(seasons_output)} Season" + ("" if len(seasons_output) == 1 else "s")
 
+    # 6. Build Payload Matrix
     result = {
         "series_id": series_id,
         "series_url": series_url,
@@ -270,19 +272,21 @@ def main():
         "audio_languages": audio_languages,
         "subtitles": subtitles,
         "creators_and_cast": {
-            "directors": [],  # not labeled "Director" in source data; from general knowledge
+            "directors": [], 
             "producers": producers,
             "cast": cast,
-            "studio": None,  # not present in source data; from general knowledge
+            "studio": None,  
         },
         "trailers_and_bonus": trailers_and_bonus,
         "seasons": seasons_output,
     }
 
+    # 7. Write Results
     os.makedirs(os.path.dirname(OUTPUT), exist_ok=True)
     with open(OUTPUT, "w", encoding="utf-8") as f:
         json.dump(result, f, indent=2, ensure_ascii=False)
 
+    # 8. Print Reports
     print(f"Wrote {OUTPUT}")
     print(f"Season 1: {len(season1_episodes)} episodes | Season 2: {len(season2_episodes)} episodes")
     print(f"Trailers/Bonus: {len(trailers_and_bonus)} | Cast: {len(cast)} | Producers: {len(producers)}")
