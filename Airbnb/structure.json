@@ -1,0 +1,95 @@
+{
+  "listing_id": "",
+  "listing_url": "",
+  "property": {
+    "property_name": "",
+    "property_type": "",
+    "city": "",
+    "state": "",
+    "country": "",
+    "address": "",
+    "latitude": "",
+    "longitude": ""
+  },
+  "property_details": {
+    "guest_capacity": 0,
+    "bedrooms": 0,
+    "beds": 0,
+    "bathrooms": 0
+  },
+  "ratings": {
+    "rating": 0.0,
+    "review_count": 0,
+    "guest_favourite": bool,
+    "category_ratings": {
+      "Cleanliness": 0.0,
+      "Accuracy": 0.0,
+      "Check-in": 0.0,
+      "Communication": 0.0,
+      "Location": 0.0,
+      "Value": 0.0
+    }
+  },
+  "host": {
+    "host_name": "",
+    "host_type": "",
+    "hosting_since": "",
+    "superhost": bool,
+    "host_profile_url": "",
+    "host_image": "",
+    "response_rate": "",
+    "response_time": "",
+    "host_highlights": [],
+    "co_hosts": []
+  },
+  "pricing": {
+    "currency": "INR",
+    "original_price": 0.0,
+    "discounted_price": 0.0,
+    "price_per_night": 0.0,
+    "total_price": 0.0,
+    "stay_nights": 0,
+    "includes_fees": true
+  },
+  "booking": {
+    "check_in": "",
+    "check_out": "",
+    "guests_selected": 
+  },
+  "images": {
+    "cover_image": "",
+    "gallery_images": [],
+    "total_images": 0
+  },
+  "amenities": [],
+  "bedroom_details": [
+    {
+      "room": "",
+      "configuration": ""
+    }
+  ],
+  "description": "",
+  "house_rules": {
+    "checkin_time": "",
+    "checkout_time": "",
+    "pets_allowed": bool,
+    "smoking_allowed": bool,
+    "parties_allowed": bool
+  },
+  "cancellation_policy": "",
+  "reviews": [],
+  "nearby_places": [],
+  "highlights": [
+    {
+      "title": "",
+      "description": ""
+    }
+  ],
+  "languages": [],
+  "property_features": [],
+  "safety_features": [],
+  "availability": {
+    "available": bool
+  },
+  "review_tags": {}
+}
