@@ -20,7 +20,7 @@
   "ratings": {
     "rating": 0.0,
     "review_count": 0,
-    "guest_favourite": bool,
+    "guest_favourite": true,
     "category_ratings": {
       "Cleanliness": 0.0,
       "Accuracy": 0.0,
@@ -34,7 +34,7 @@
     "host_name": "",
     "host_type": "",
     "hosting_since": "",
-    "superhost": bool,
+    "superhost": true,
     "host_profile_url": "",
     "host_image": "",
     "response_rate": "",
@@ -72,9 +72,9 @@
   "house_rules": {
     "checkin_time": "",
     "checkout_time": "",
-    "pets_allowed": bool,
-    "smoking_allowed": bool,
-    "parties_allowed": bool
+    "pets_allowed": true,
+    "smoking_allowed": true,
+    "parties_allowed": true
   },
   "cancellation_policy": "",
   "reviews": [],
@@ -89,7 +89,7 @@
   "property_features": [],
   "safety_features": [],
   "availability": {
-    "available": bool
+    "available": true
   },
   "review_tags": {}
 }
