@@ -1,0 +1,35 @@
+{
+  "propertyId": "number",
+  "name": "string",
+  "starRating": "number",
+  "propertyType": "string",
+  "address": {
+    "area": "string",
+    "city": "string",
+    "distanceFromCityCenter_km": "number"
+  },
+  "review": {
+    "score": "number",
+    "count": "number"
+  },
+  "image": "string (url)",
+  "price": {
+    "currency": "string",
+    "crossedOutPrice": "number",
+    "displayPrice": "number",
+    "discountPercent": "number"
+  },
+  "coupon": {
+    "code": "string | null",
+    "amountOff": "number | null"
+  },
+  "badges": ["string"],
+  "soldOut": "boolean | null",
+  "onlyXLeft": "number | null",
+  "bookingActivity": {
+    "count": "number",
+    "timeFrame": "string"
+  },
+  "freeCancellation": "boolean",
+  "propertyPage": "string (url)"
+}

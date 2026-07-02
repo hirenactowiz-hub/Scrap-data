@@ -1,0 +1,48 @@
+[
+  {
+    "stops": "1-Stop",
+    "legs": [
+      {
+        "flightId": "6E6190",
+        "airline": "IndiGo",
+        "date": "01Jun2026",
+        "day": "Monday",
+        "cabinClass": "ECONOMY",
+        "duration": "0:55:00",
+        "departure": {
+          "city": "New Delhi",
+          "time": "05:20",
+          "terminal": "Terminal - 1"
+        },
+        "arrival": {
+          "city": "Jaipur",
+          "time": "06:15",
+          "terminal": "Terminal - 2"
+        }
+      },
+      {
+        "flightId": "6E2719",
+        "airline": "IndiGo",
+        "date": "01Jun2026",
+        "day": "Monday",
+        "cabinClass": "ECONOMY",
+        "duration": "1:45:00",
+        "departure": {
+          "city": "Jaipur",
+          "time": "11:05",
+          "terminal": "Terminal - 2"
+        },
+        "arrival": {
+          "city": "Navi Mumbai",
+          "time": "12:50",
+          "terminal": "No Terminal Data Given"
+        }
+      }
+    ],
+    "pricing": {
+      "baseFare": 4716,
+      "taxAndFees": 1809,
+      "totalFare": 6525
+    }
+  }
+]

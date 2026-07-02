@@ -1,0 +1,32 @@
+[
+  {
+    "stops": "",
+    "legs": [
+      {
+        "flightId": "", 
+        "airline": "",
+        "date": "",
+        "day": "",
+        "cabinClass": "",
+        "duration": "",
+        "departure": {
+          "city": "",
+          "time": "",
+          "terminal": ""
+        },
+        "arrival": {
+          "city": "",
+          "time": "",
+          "terminal": ""
+        }
+      }
+    ],
+    "pricing": {
+      "baseFare": "",
+      "taxAndFees": "",
+      "totalFare": ""
+    }
+  }
+]
+
+
