@@ -1,0 +1,308 @@
+{
+    "goods_id": "128643952",
+    "goods_sn": "st25041889898982216",
+    "title_ar": "Sport MetroGents ملابس علوية رياضي أحمر مصنوع من الأقمشة المنسوجة المتنفسة للرجال، بياقة دائرية متينة وأكمام قصيرة، ملابس علوية جيم بتصميم فضفاض وواسع، خفيف الوزن",
+    "category": "لباس علوي رياضية للرجال",
+    "brand": "Manfinity",
+    "store_name": "Sport MetroGents",
+    "in_stock": true,
+    "total_stock": "20",
+    "main_image": "https://img.ltwebstatic.com/v4/j/pi/2025/09/10/b9/1757471906d478ea14493a48dcc2b402c995431bbd_thumbnail_900x.webp",
+    "thumbnail": "https://img.ltwebstatic.com/v4/j/pi/2025/09/10/b9/1757471906d478ea14493a48dcc2b402c995431bbd_thumbnail_220x293.jpg",
+    "images": [
+        "https://img.ltwebstatic.com/v4/j/pi/2025/09/10/b9/1757471906d478ea14493a48dcc2b402c995431bbd_thumbnail_900x.webp",
+        "https://img.ltwebstatic.com/v4/j/pi/2025/09/10/14/175747190793384091bab51b4401678e2bca095a39_thumbnail_900x.webp",
+        "https://img.ltwebstatic.com/v4/j/pi/2025/09/08/e1/1757315418b410de2a259c274db180f15f3e922fae_thumbnail_900x.webp"
+    ],
+    "price": {
+        "sale_price_sar": "22.00",
+        "sale_price_usd": "5.86",
+        "retail_price_sar": "22.00"
+    },
+    "sizes_available": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+    ],
+    "skus": [
+        {
+            "sku_code": "I8r5ttqh03t3",
+            "size": "XXL",
+            "stock": "20",
+            "price_sar": "22.00",
+            "price_usd": "5.86"
+        },
+        {
+            "sku_code": "I8r5ttqunh29",
+            "size": "L",
+            "stock": "20",
+            "price_sar": "22.00",
+            "price_usd": "5.86"
+        },
+        {
+            "sku_code": "I8r5ttr7jgz9",
+            "size": "S",
+            "stock": "20",
+            "price_sar": "22.00",
+            "price_usd": "5.86"
+        },
+        {
+            "sku_code": "I8r5ttr0vc4n",
+            "size": "M",
+            "stock": "20",
+            "price_sar": "22.00",
+            "price_usd": "5.86"
+        },
+        {
+            "sku_code": "I8r5ttqno96b",
+            "size": "XL",
+            "stock": "20",
+            "price_sar": "22.00",
+            "price_usd": "5.86"
+        }
+    ],
+    "size_chart_cm": [
+        {
+            "size": "S",
+            "shoulder_cm": " 56 cm",
+            "bust_cm": " 114 cm",
+            "length_cm": " 71 cm",
+            "sleeve_length_cm": " 22.5 cm",
+            "bicep_length_cm": " 44.8 cm",
+            "cuff_cm": " 42.8 cm"
+        },
+        {
+            "size": "M",
+            "shoulder_cm": " 58 cm",
+            "bust_cm": " 118 cm",
+            "length_cm": " 73 cm",
+            "sleeve_length_cm": " 23 cm",
+            "bicep_length_cm": " 46 cm",
+            "cuff_cm": " 44 cm"
+        },
+        {
+            "size": "L",
+            "shoulder_cm": " 60.5 cm",
+            "bust_cm": " 123 cm",
+            "length_cm": " 75 cm",
+            "sleeve_length_cm": " 23.5 cm",
+            "bicep_length_cm": " 47.4 cm",
+            "cuff_cm": " 45.2 cm"
+        },
+        {
+            "size": "XL",
+            "shoulder_cm": " 63 cm",
+            "bust_cm": " 128 cm",
+            "length_cm": " 77 cm",
+            "sleeve_length_cm": " 24 cm",
+            "bicep_length_cm": " 48.8 cm",
+            "cuff_cm": " 46.4 cm"
+        },
+        {
+            "size": "XXL",
+            "shoulder_cm": " 65.5 cm",
+            "bust_cm": " 133 cm",
+            "length_cm": " 79 cm",
+            "sleeve_length_cm": " 24.5 cm",
+            "bicep_length_cm": " 50.2 cm",
+            "cuff_cm": " 47.6 cm"
+        }
+    ],
+    "colors": [
+        {
+            "color_name_ar": "أخضر عسكري",
+            "goods_id": "145942252",
+            "goods_sn": "st25041889898957242",
+            "image": "https://img.ltwebstatic.com/v4/j/pi/2025/10/20/38/176093944604f3e94aed68c892a94dc4673370d56f_thumbnail_405x552.jpg",
+            "url_name": "Gym Rark Men s Summer Casual Dumbbell Print Sports T Shirt Oversized Gym Shirts Workout Tees Baggy T Shirt Lightweight",
+            "is_current": false
+        },
+        {
+            "color_name_ar": "الأسود",
+            "goods_id": "507941028",
+            "goods_sn": "st260618141415035515398",
+            "image": "https://img.ltwebstatic.com/v4/j/pi/2026/06/23/19/1782180911378acc0ead787cfcd01a90aa8037ad12_thumbnail_405x552.jpg",
+            "url_name": "Sport MetroGents Men s Slogan Print Loose Fit Short Sleeve Sports T Shirt",
+            "is_current": false
+        },
+        {
+            "color_name_ar": "الأسود",
+            "goods_id": "500877276",
+            "goods_sn": "st260601105683845262318",
+            "image": "https://img.ltwebstatic.com/v4/j/pi/2026/06/04/a4/17805688676a409c30b21f75065138026426acede8_thumbnail_405x552.jpg",
+            "url_name": "Sport MetroGents Men s Round Neck Colorblock Casual Versatile Daily Travel Sports T Shirt",
+            "is_current": false
+        },
+        {
+            "color_name_ar": "الأسود",
+            "goods_id": "195614716",
+            "goods_sn": "st25091994501555966",
+            "image": "https://img.ltwebstatic.com/v4/j/pi/2025/09/26/61/1758849297377ace565dc84eef01ebaaf6c9f28476_thumbnail_405x552.jpg",
+            "url_name": "Gym Rark 2 Pack Men s Casual Loose Fit Round Neck Short Sleeve T Shirt Black Graphic Gym T Shirt Summer Athleisure Oversized Sports Tee Lightweight Versatile",
+            "is_current": false
+        },
+        {
+            "color_name_ar": "الأسود",
+            "goods_id": "497917462",
+            "goods_sn": "st260528180009636886760",
+            "image": "https://img.ltwebstatic.com/v4/j/pi/2026/06/09/1e/178100071163f86ee9bfcc2230438f6e95622a4ec8_thumbnail_405x552.jpg",
+            "url_name": "Sport MetroGents Men s Black Round Neck Spider Pattern Short Sleeve Sports T Shirt",
+            "is_current": false
+        },
+        {
+            "color_name_ar": "الأسود",
+            "goods_id": "453285140",
+            "goods_sn": "st260415191865694259137",
+            "image": "https://img.ltwebstatic.com/v4/j/pi/2026/05/11/cb/17784842537e40398a62ff077ffe68d434d0247da2_thumbnail_405x552.jpg",
+            "url_name": "Sport MetroGents Men s 1pc Round Neck Casual Versatile Daily Wear Sports Short Sleeve T Shirt Gym",
+            "is_current": false
+        },
+        {
+            "color_name_ar": "رمادي",
+            "goods_id": "97664825",
+            "goods_sn": "st25041889898919709",
+            "image": "https://img.ltwebstatic.com/v4/j/pi/2025/09/02/12/17567839932fcb6e2904caf032252e4eb4c8bb5879_thumbnail_405x552.jpg",
+            "url_name": "Sport MetroGents Men s Casual Versatile Barbell Print Short Sleeve Sports T Shirt Gym",
+            "is_current": false
+        },
+        {
+            "color_name_ar": "رمادي",
+            "goods_id": "451588307",
+            "goods_sn": "st260327114505820937503",
+            "image": "https://img.ltwebstatic.com/v4/j/pi/2026/04/24/f7/1777012324f391877eb22ae3771c71db5efc8b3703_thumbnail_405x552.jpg",
+            "url_name": "Sport MetroGents Men s 3pcs Round Neck Short Sleeve Casual Summer Daily Versatile Sports T Shirt Gym",
+            "is_current": false
+        },
+        {
+            "color_name_ar": "الأحمر",
+            "goods_id": "128643952",
+            "goods_sn": "st25041889898982216",
+            "image": "https://img.ltwebstatic.com/v4/j/pi/2025/09/10/b9/1757471906d478ea14493a48dcc2b402c995431bbd_thumbnail_405x552.jpg",
+            "url_name": "Sport MetroGents Men s Breathable Knitted Burgundy Summer Oversized Sports Shirt Round Neck Short Sleeve Tight Gym T Shirt Lightweight Loose Fit Gym Top Gym Tops",
+            "is_current": true
+        },
+        {
+            "color_name_ar": "أبيض",
+            "goods_id": "97664991",
+            "goods_sn": "st25041889898970278",
+            "image": "https://img.ltwebstatic.com/v4/j/pi/2025/06/12/d1/174970241169df99efc74236ab7866c204f9df3182_thumbnail_405x552.jpg",
+            "url_name": "Sport MetroGents Men s Barbell Graphic Print Round Neck Short Sleeve Loose Fit Sports T Shirt Workout Tops Breathable Lightweight Gym",
+            "is_current": false
+        },
+        {
+            "color_name_ar": "رمادي غامق",
+            "goods_id": "455473587",
+            "goods_sn": "st260425151627986636861",
+            "image": "https://img.ltwebstatic.com/v4/j/pi/2026/04/28/41/17773427242dbf0201320207f9da9f43ef7ec61aa4_thumbnail_405x552.jpg",
+            "url_name": "Sport MetroGents Men s 2pcs Casual Star Print Round Neck Short Sleeve Sports T Shirt Summer Gym",
+            "is_current": false
+        },
+        {
+            "color_name_ar": "أزرق بحري",
+            "goods_id": "97664859",
+            "goods_sn": "st25041889898989923",
+            "image": "https://img.ltwebstatic.com/v4/j/pi/2025/06/12/75/1749702420c9d626c58d2d8b86c5abaaf83f31e603_thumbnail_405x552.jpg",
+            "url_name": "Sport MetroGents Men s Dumbbell Print Loose Round Neck Short Sleeve Sports T Shirt Workout Tops Breathable Gym",
+            "is_current": false
+        }
+    ],
+    "material": [
+        {
+            "name": "تكوين",
+            "value": "أقمشة محبوكة"
+        },
+        {
+            "name": "مواد",
+            "value": "100% البوليستر"
+        }
+    ],
+    "product_attributes": [
+        {
+            "name_ar": "نوع الشكل",
+            "value_ar": "الرخو",
+            "name_en": "Fit Type",
+            "value_en": "Loose"
+        },
+        {
+            "name_ar": "خط العنق",
+            "value_ar": "دائري الرقبة",
+            "name_en": "Neckline",
+            "value_en": "Round Neck"
+        },
+        {
+            "name_ar": "أصناف التصميم",
+            "value_ar": "تصميم الكرتون",
+            "name_en": "Pattern Type",
+            "value_en": "Cartoon"
+        },
+        {
+            "name_ar": "نشاط",
+            "value_ar": "يومية وكاجوال",
+            "name_en": "Activity",
+            "value_en": "Daily & Casual"
+        },
+        {
+            "name_ar": "مبطنة لمزيد من الدفء",
+            "value_ar": "لا",
+            "name_en": "Lined For Added Warmth",
+            "value_en": "No"
+        },
+        {
+            "name_ar": "لون",
+            "value_ar": "الأحمر",
+            "name_en": "Color",
+            "value_en": "Red"
+        },
+        {
+            "name_ar": "طول الأكمام",
+            "value_ar": "الأكمام القصيرة",
+            "name_en": "Sleeve Length",
+            "value_en": "Short Sleeve"
+        },
+        {
+            "name_ar": "الطول",
+            "value_ar": "قصير",
+            "name_en": "Length",
+            "value_en": "Short"
+        },
+        {
+            "name_ar": "عدد القطع",
+            "value_ar": "طقم قطعة واحدة 1",
+            "name_en": "Number of Pieces",
+            "value_en": "1 Piece Set"
+        },
+        {
+            "name_ar": "مرونة القماش",
+            "value_ar": "متمدد طفيف",
+            "name_en": "Fabric Elasticity",
+            "value_en": "Slight Stretch"
+        },
+        {
+            "name_ar": "المواد",
+            "value_ar": "أقمشة محبوكة",
+            "name_en": "Material",
+            "value_en": "Knitted Fabric"
+        },
+        {
+            "name_ar": "تكوين",
+            "value_ar": "100% البوليستر",
+            "name_en": "Composition",
+            "value_en": "100% Polyester"
+        },
+        {
+            "name_ar": "ارشادات العناية",
+            "value_ar": "يغسل بالغسالة، لا يستخدم التنظيف الجاف",
+            "name_en": "Care Instructions",
+            "value_en": "Machine wash, do not dry clean"
+        },
+        {
+            "name_ar": "شفاف",
+            "value_ar": "لا",
+            "name_en": "Sheer",
+            "value_en": "No"
+        }
+    ],
+    "canonical_url_name": "Gym Rark Men s Summer Casual Dumbbell Print Sports T Shirt Oversized Gym Shirts Workout Tees Baggy T Shirt Lightweight"
+}
