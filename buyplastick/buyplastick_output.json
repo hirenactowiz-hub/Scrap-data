@@ -1,0 +1,37 @@
+{
+    "product": {
+        "title": "ABS (Haircell Texture) Plastic Sheet",
+        "price": "$2.31",
+        "sku": "PLA-019-001",
+        "product_details": {
+            "color": "Black",
+            "thickness": "1/16\"",
+            "nominal_size": "12\" × 12\""
+        },
+        "img": [
+            "https://cdn11.bigcommerce.com/s-800ahmh2gx/images/stencil/1280x1280/products/134/1718/11__16233.1674758052.jpg?c=1",
+            "https://cdn11.bigcommerce.com/s-800ahmh2gx/images/stencil/1280x1280/products/134/1801/Abs_advantage__46577.1674926429.jpg?c=1",
+            "https://cdn11.bigcommerce.com/s-800ahmh2gx/images/stencil/1280x1280/products/134/1863/Dimensions1__77429.1676051248.jpg?c=1",
+            "https://cdn11.bigcommerce.com/s-800ahmh2gx/images/stencil/1280x1280/products/134/1809/abs_uses__89614.1676047584.jpg?c=1",
+            "https://cdn11.bigcommerce.com/s-800ahmh2gx/images/stencil/1280x1280/products/134/1724/51__41181.1676047584.jpg?c=1",
+            "https://cdn11.bigcommerce.com/s-800ahmh2gx/images/stencil/1280x1280/products/134/1701/61__42881.1676047584.jpg?c=1"
+        ],
+        "description": "ABS (Acrylonitrile butadiene styrene) is a low cost engineering plastic that is easy to machine and fabricate. ABS is commonly used for structural applications when impact resistance, strength, and stiffness are required. It is widely used for fabricating prototypes since it has excellent dimensional stability and is easy to paint and glue.",
+        "advantage": [
+            "low cost",
+            "strong and stiff",
+            "easily machined",
+            "easily thermoformed",
+            "easily bonds with adhesives",
+            "excellent impact and scratch resistance"
+        ],
+        "applications": [
+            "storage cases",
+            "models and prototypes",
+            "point-of-purchase displays",
+            "instrument panels",
+            "housings, guards, and covers",
+            "thermoformed trays and tote bins"
+        ]
+    }
+}
