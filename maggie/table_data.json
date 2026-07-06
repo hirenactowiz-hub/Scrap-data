@@ -1,0 +1,68 @@
+{
+    "energy_(kcal)": {
+        "per_100g": "409",
+        "per_serve": "286",
+        "%gda_per_serve": "14%",
+        "%rda_per_serve": "NA"
+    },
+    "protein_(g)": {
+        "per_100g": "9.6",
+        "per_serve": "6.7",
+        "%gda_per_serve": "13%",
+        "%rda_per_serve": "NA"
+    },
+    "carbohydrate_(g)": {
+        "per_100g": "60.3",
+        "per_serve": "42.2",
+        "%gda_per_serve": "16%",
+        "%rda_per_serve": "NA"
+    },
+    "-total_sugars(g)": {
+        "per_100g": "2.3",
+        "per_serve": "1.6",
+        "%gda_per_serve": "2%",
+        "%rda_per_serve": "NA"
+    },
+    "-sugar_(sucrose)(g)": {
+        "per_100g": "1.1",
+        "per_serve": "0.8",
+        "%gda_per_serve": "NA",
+        "%rda_per_serve": "NA"
+    },
+    "-fibre_(g)": {
+        "per_100g": "2.3",
+        "per_serve": "1.6",
+        "%gda_per_serve": "6%",
+        "%rda_per_serve": "NA"
+    },
+    "total_fat_(g)": {
+        "per_100g": "14.4",
+        "per_serve": "10.1",
+        "%gda_per_serve": "14%",
+        "%rda_per_serve": "NA"
+    },
+    "-saturated_fat_(g)": {
+        "per_100g": "6.3",
+        "per_serve": "4.4",
+        "%gda_per_serve": "22%",
+        "%rda_per_serve": "NA"
+    },
+    "-trans_fat(g)": {
+        "per_100g": "0.12",
+        "per_serve": "0.08",
+        "%gda_per_serve": "NA",
+        "%rda_per_serve": "NA"
+    },
+    "sodium_(mg)": {
+        "per_100g": "1072",
+        "per_serve": "750.4",
+        "%gda_per_serve": "31%",
+        "%rda_per_serve": "NA"
+    },
+    "iron_(mg)": {
+        "per_100g": "3.7",
+        "per_serve": "2.59",
+        "%gda_per_serve": "NA",
+        "%rda_per_serve": "15%"
+    }
+}
