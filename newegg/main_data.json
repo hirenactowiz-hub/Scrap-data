@@ -1,0 +1,74 @@
+{
+    "product_name": "MSI MAG Coreliquid A13 360 Black - AIO ARGB Liquid Cooling - 360mm Radiator - Triple 120mm ARGB PWM Fans - EZ Connect - LGA 1700/1851/AM5/AM4 Compatible",
+    "product_url": "https://www.newegg.com/msi-aio-radiator-size-360-mm-intel-socket-lga-1700-1851-amd-socket-am5-am4/p/N82E16835846069",
+    "product_id": "N82E16835846069",
+    "images": [
+        "https://c1.neweggimages.com/productimage/nb1280/35-846-069-03.png",
+        "https://c1.neweggimages.com/productimage/nb1280/35-846-069-01.png",
+        "https://c1.neweggimages.com/productimage/nb1280/35-846-069-02.png",
+        "https://c1.neweggimages.com/productimage/nb1280/35-846-069-04.png",
+        "https://c1.neweggimages.com/productimage/nb1280/35-846-069-05.png",
+        "https://c1.neweggimages.com/productimage/nb1280/35-846-069-06.png",
+        "https://c1.neweggimages.com/productimage/nb1280/35-846-069-07.png",
+        "https://c1.neweggimages.com/productimage/nb1280/35-846-069-08.png",
+        "https://c1.neweggimages.com/productimage/nb1280/35-846-069-09.png",
+        "https://c1.neweggimages.com/productimage/nb1280/35-846-069-10.jpg",
+        "https://c1.neweggimages.com/productimage/nb1280/35-846-069-11.jpg",
+        "https://c1.neweggimages.com/productimage/nb1280/35-846-069-12.jpg",
+        "https://c1.neweggimages.com/productimage/nb1280/35-846-069-13.jpg"
+    ],
+    "product_rating_count": 319,
+    "product_rating": 4.5,
+    "variant_type": "3 Fan Slots (120mm)",
+    "offer_price": 89.99,
+    "discount_price": 7,
+    "features": [
+        "Minimalist Design: Embracing the philosophy of simplicity, with clean lines that embody the essence of \"less is more",
+        " \u201c Ring Blade Design: Focuses airflow and reduces noise",
+        " The fan design uses Rifle bearings, which effectively reduce fan noise and increase operational lifespan",
+        " ARGB GEN2: Customize the perfect lighting effects for you through MSI CENTER",
+        " EPDM Tubing: Durable and effective in preventing coolant evaporation",
+        " Pre-installed Fans: Saves gamers installation time and enhances the assembly experience",
+        " Easy installation: Pre-installed Intel Bracket (1700/1851)"
+    ],
+    "specifications": [
+        {
+            "Model": {
+                "Brand": "MSI",
+                "Type": "AIO"
+            },
+            "Block": {
+                "Block Compatibility": "Intel Socket LGA 1700 / 1851\nAMD Socket AM5/AM4",
+                "Block Compatibility - AMD": "AMD Socket AM5/AM4",
+                "Block Compatibility - Intel": "Intel Socket LGA 1700 / 1851",
+                "Block Dim.": "70.9 x 69.3 x 56.98 mm"
+            },
+            "Pump": {
+                "Pump Speed": "3800 RPM \u00b1 300 RPM",
+                "Pump Noise": "20 dBA (avg.)"
+            },
+            "Radiator": {
+                "Radiator Size": "360 mm",
+                "Radiator Material": "Aluminum"
+            },
+            "Fan": {
+                "Fan Size": "3 Fan Slots (120 mm)",
+                "Fan Dim.": "120 x 120 x 25 mm",
+                "Bearing Type": "Rifle Bearing",
+                "Fan RPM": "500~2000 \u00b1 10% RPM",
+                "Fan Air Flow": "62.6 CFM",
+                "Fan Noise": "31.1 dBA",
+                "Color": "Black",
+                "LED Color": "ARGB",
+                "Pressure": "2.36 mmH2O"
+            },
+            "Tube": {
+                "Tube Dim.": "390 mm / 15.35 inches",
+                "Tube Material": "EPDM"
+            },
+            "Additional Information": {
+                "First Listed on Newegg": "November 18, 2024"
+            }
+        }
+    ]
+}
