@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XPath Query Console Engine</title>
+    <style>
+        :root {
+            --bg-main: #0f141c;
+            --bg-panel: #161f2b;
+            --bg-input: #0a0e14;
+            --accent: #ffb454;
+            --text-main: #bfbdb6;
+            --text-bright: #e6b450;
+            --border: #233043;
+            --success: #7fd962;
+            --error: #f07178;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            padding: 2rem;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 1rem;
+        }
+
+        header h1 {
+            color: var(--text-bright);
+            font-size: 1.5rem;
+            font-family: monospace;
+            font-weight: normal;
+        }
+
+        .panel {
+            background: var(--bg-panel);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 0.5rem;
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-main);
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            font-family: monospace;
+            border-radius: 4px;
+        }
+
+        .tab-btn.active {
+            background: var(--border);
+            color: var(--accent);
+        }
+
+        .input-group {
+            margin-bottom: 1.25rem;
+        }
+
+        label {
+            display: block;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+            color: #707a8c;
+            font-weight: 600;
+        }
+
+        input[type="text"], input[type="file"], select {
+            width: 100%;
+            background: var(--bg-input);
+            border: 1px solid var(--border);
+            color: #fff;
+            padding: 0.75rem;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            outline: none;
+        }
+
+        input[type="text"]:focus, select:focus {
+            border-color: var(--accent);
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 1rem;
+        }
+
+        .submit-btn {
+            background: var(--accent);
+            color: #000;
+            border: none;
+            width: 100%;
+            padding: 0.85rem;
+            border-radius: 4px;
+            font-weight: bold;
+            font-family: monospace;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: opacity 0.2s;
+        }
+
+        .submit-btn:hover { opacity: 0.9; }
+        .submit-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+        .hidden { display: none; }
+
+        /* Notification Banners */
+        .alert {
+            padding: 1rem;
+            border-radius: 4px;
+            margin-bottom: 1.5rem;
+            font-family: monospace;
+            font-size: 0.9rem;
+        }
+        .alert-error { background: rgba(240, 113, 120, 0.1); border: 1px solid var(--error); color: var(--error); }
+
+        /* Results Design */
+        .match-card {
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            background: var(--bg-input);
+            margin-bottom: 1rem;
+            padding: 1rem;
+        }
+
+        .match-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .matched-text {
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .badge {
+            font-family: monospace;
+            font-size: 0.75rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 3px;
+            background: var(--border);
+        }
+
+        .xpath-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--bg-panel);
+            padding: 0.5rem;
+            border-radius: 4px;
+            margin-top: 0.5rem;
+            font-family: monospace;
+            font-size: 0.9rem;
+        }
+
+        .xpath-str {
+            color: var(--success);
+            word-break: break-all;
+            user-select: all;
+        }
+
+        .copy-btn {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 0.2rem 0.5rem;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 0.75rem;
+        }
+        .copy-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+        .loader {
+            text-align: center;
+            padding: 2rem;
+            font-family: monospace;
+            color: var(--accent);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>[sys.console // xpath_extractor_v1]</h1>
+    </header>
+
+    <div id="alert-container"></div>
+
+    <div class="panel">
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchInput('url', this)">LIVE URL ARCHITECTURE</button>
+            <button class="tab-btn" onclick="switchInput('file', this)">HTML / MHTML FILE UPLOAD</button>
+        </div>
+
+        <form id="analyze-form" onsubmit="processExtraction(event)">
+            <input type="hidden" id="source_type" value="url">
+
+            <div id="url-group" class="input-group">
+                <label for="url">Target Web URL Address</label>
+                <input type="text" id="url" name="url" placeholder="https://example.com/product-page">
+            </div>
+
+            <div id="file-group" class="input-group hidden">
+                <label for="file">Upload Local Asset Tree</label>
+                <input type="file" id="file" name="file" accept=".html,.htm,.mhtml,.mht">
+            </div>
+
+            <div class="grid-2">
+                <div class="input-group">
+                    <label for="query">Target Text / Attribute / Key Label Identifier</label>
+                    <input type="text" id="query" name="query" placeholder="e.g., $19.99, Price, product-title" required>
+                </div>
+                <div class="input-group">
+                    <label for="mode">Extraction Heuristic</label>
+                    <select id="mode" name="mode">
+                        <option value="auto">Auto-Detect Routing</option>
+                        <option value="value">Explicit Value/String Search</option>
+                        <option value="key">Key-Label Structural Sibling</option>
+                    </select>
+                </div>
+            </div>
+
+            <button type="submit" id="submit-btn" class="submit-btn">EXECUTE STRUCTURAL INSPECTION</button>
+        </form>
+    </div>
+
+    <div class="panel">
+        <label>Engine Evaluation Console Output</label>
+        <div id="output-runtime">
+            <div style="color: #707a8c; font-family: monospace; text-align: center; padding: 2rem;">
+                System idling. Awaiting analytical query execution.
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function switchInput(type, btn) {
+        document.getElementById('source_type').value = type;
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        if(type === 'url') {
+            document.getElementById('url-group').classList.remove('hidden');
+            document.getElementById('file-group').classList.add('hidden');
+            document.getElementById('file').value = '';
+        } else {
+            document.getElementById('file-group').classList.remove('hidden');
+            document.getElementById('url-group').classList.add('hidden');
+            document.getElementById('url').value = '';
+        }
+    }
+
+    function showAlert(msg) {
+        const container = document.getElementById('alert-container');
+        container.innerHTML = `<div class="alert alert-error">⚠️ ERROR ENGINE BREAK: ${msg}</div>`;
+    }
+
+    function clearAlert() {
+        document.getElementById('alert-container').innerHTML = '';
+    }
+
+    function copyToClipboard(str, btn) {
+        navigator.clipboard.writeText(str).then(() => {
+            const oldText = btn.innerText;
+            btn.innerText = "COPIED";
+            btn.style.borderColor = "var(--success)";
+            setTimeout(() => {
+                btn.innerText = oldText;
+                btn.style.borderColor = "var(--border)";
+            }, 1000);
+        });
+    }
+
+    async function processExtraction(e) {
+        e.preventDefault();
+        clearAlert();
+
+        const submitBtn = document.getElementById('submit-btn');
+        const outputRuntime = document.getElementById('output-runtime');
+        
+        const sourceType = document.getElementById('source_type').value;
+        const query = document.getElementById('query').value;
+        const mode = document.getElementById('mode').value;
+
+        const formData = new FormData();
+        formData.append('query', query);
+        formData.append('mode', mode);
+
+        if (sourceType === 'url') {
+            const urlVal = document.getElementById('url').value.trim();
+            if(!urlVal) { showAlert("Please input a target URL address to evaluate."); return; }
+            formData.append('url', urlVal);
+        } else {
+            const fileInput = document.getElementById('file');
+            if(fileInput.files.length === 0) { showAlert("Please choose an HTML or MHTML file asset to evaluate."); return; }
+            formData.append('file', fileInput.files[0]);
+        }
+
+        // Toggle running states
+        submitBtn.disabled = true;
+        outputRuntime.innerHTML = `<div class="loader">> Mapping structural DOM nodes and applying rules algorithms...</div>`;
+
+        try {
+            const response = await fetch('/api/analyze', {
+                method: 'POST',
+                body: formData
+            });
+            const data = await response.json();
+
+            if (!response.ok || data.error) {
+                throw new Error(data.error || `HTTP exception mapping code: ${response.status}`);
+            }
+
+            if (!data.results || data.results.length === 0) {
+                outputRuntime.innerHTML = `
+                    <div style="color: var(--error); font-family: monospace; padding: 1rem; border: 1px dashed var(--error); border-radius:4px;">
+                        > No unique elements matched query constraints. Try switching 'Extraction Heuristic' mode or reducing query length specificity.
+                    </div>`;
+                return;
+            }
+
+            // Build dynamic matches UI elements
+            let htmlStr = '';
+            data.results.forEach(match => {
+                htmlStr += `
+                    <div class="match-card">
+                        <div class="match-header">
+                            <span class="matched-text">${match.matched_text.replace(/</g, '&lt;')}</span>
+                            <span class="badge" style="color:var(--accent)">${match.mode_found}</span>
+                        </div>
+                        <div>
+                `;
+                match.paths.forEach(path => {
+                    htmlStr += `
+                        <div class="xpath-row">
+                            <div>
+                                <span class="badge" style="margin-right: 0.5rem;">${path.type}</span>
+                                <span class="xpath-str">${path.xpath}</span>
+                            </div>
+                            <button class="copy-btn" onclick="copyToClipboard('${path.xpath.replace(/'/g, "\\'")}', this)">COPY</button>
+                        </div>
+                    `;
+                });
+                htmlStr += `</div></div>`;
+            });
+
+            outputRuntime.innerHTML = htmlStr;
+
+        } catch (err) {
+            showAlert(err.message);
+            outputRuntime.innerHTML = `<div style="color: var(--error); font-family: monospace;">Execution halted manually by error catch handlers.</div>`;
+        } finally {
+            submitBtn.disabled = false;
+        }
+    }
+</script>
+</body>
+</html>
