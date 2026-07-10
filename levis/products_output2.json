@@ -1,0 +1,85 @@
+{
+    "product": [
+        {
+            "title": "Unisex Black Solid Tote Bag",
+            "color": "Black",
+            "salePrice": "₹2,083",
+            "originalPrice": "₹3,789",
+            "discount": "45% OFF",
+            "url": "https://levi.in/products/unisexs-black-solid-tote-bag-004c20002?_pos=1&_fid=570ce4918&_ss=c",
+            "imageUrl": "https://levi.in/cdn/shop/files/004C20002_01_Styleshot.jpg?v=1760525418"
+        },
+        {
+            "title": "Unisex Black Solid Backpack",
+            "color": "Black",
+            "salePrice": "₹2,083",
+            "originalPrice": "₹4,209",
+            "discount": "45% OFF",
+            "url": "https://levi.in/products/unisexs-black-solid-backpack-004c30004?_pos=2&_fid=570ce4918&_ss=c",
+            "imageUrl": "https://levi.in/cdn/shop/files/004C30004_01_Styleshot.jpg?v=1760525417"
+        },
+        {
+            "title": "Unisex Navy Solid Backpack",
+            "color": "Navy Blue",
+            "salePrice": "₹2,083",
+            "originalPrice": "₹4,209",
+            "discount": "45% OFF",
+            "url": "https://levi.in/products/unisexs-navy-solid-backpack-004c30002?_pos=3&_fid=570ce4918&_ss=c",
+            "imageUrl": "https://levi.in/cdn/shop/files/004C30002_01_Styleshot.jpg?v=1760525417"
+        },
+        {
+            "title": "Unisex Brown Solid Backpack",
+            "color": "Brown",
+            "salePrice": "₹2,083",
+            "originalPrice": "₹3,999",
+            "discount": "45% OFF",
+            "url": "https://levi.in/products/unisexs-brown-solid-backpack-004c30003?_pos=4&_fid=570ce4918&_ss=c",
+            "imageUrl": "https://levi.in/cdn/shop/files/004C30003_01_Front.jpg?v=1760525417"
+        },
+        {
+            "title": "Unisex Beige Solid Tote Bag",
+            "color": "Beige",
+            "salePrice": "₹2,083",
+            "originalPrice": "₹3,789",
+            "discount": "45% OFF",
+            "url": "https://levi.in/products/unisexs-beige-solid-tote-bag-004c20001?_pos=5&_fid=570ce4918&_ss=c",
+            "imageUrl": "https://levi.in/cdn/shop/files/004C20001_01_Styleshot.jpg?v=1760525418"
+        },
+        {
+            "title": "Unisex Olive Solid Tote Bag",
+            "color": "Green",
+            "salePrice": "₹2,083",
+            "originalPrice": "₹3,789",
+            "discount": "45% OFF",
+            "url": "https://levi.in/products/unisexs-olive-solid-tote-bag-004c20003?_pos=6&_fid=570ce4918&_ss=c",
+            "imageUrl": "https://levi.in/cdn/shop/files/004C20003_01_Styleshot.jpg?v=1760525418"
+        },
+        {
+            "title": "Unisex Brown Solid Messenger Bag",
+            "color": "Brown",
+            "salePrice": "₹2,083",
+            "originalPrice": "₹3,369",
+            "discount": "45% OFF",
+            "url": "https://levi.in/products/unisexs-brown-solid-messenger-bag-004c40001?_pos=7&_fid=570ce4918&_ss=c",
+            "imageUrl": "https://levi.in/cdn/shop/files/004C40001_01_Styleshot.jpg?v=1760525418"
+        },
+        {
+            "title": "Unisex Black Solid Crossbody Bag",
+            "color": "Black",
+            "salePrice": "₹2,083",
+            "originalPrice": "₹3,369",
+            "discount": "45% OFF",
+            "url": "https://levi.in/products/unisexs-black-solid-crossbody-bag-004c40000?_pos=8&_fid=570ce4918&_ss=c",
+            "imageUrl": "https://levi.in/cdn/shop/files/004C40000_01_Styleshot.jpg?v=1760525418"
+        },
+        {
+            "title": "Unisex Olive Solid Crossbody Bag",
+            "color": "Green",
+            "salePrice": "₹2,083",
+            "originalPrice": "₹3,369",
+            "discount": "45% OFF",
+            "url": "https://levi.in/products/unisexs-olive-solid-crossbody-bag-004c40002?_pos=9&_fid=570ce4918&_ss=c",
+            "imageUrl": "https://levi.in/cdn/shop/files/004C40002_01_Styleshot.jpg?v=1760525417"
+        }
+    ]
+}
