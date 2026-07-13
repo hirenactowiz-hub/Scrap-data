@@ -1,0 +1,42 @@
+[
+    {
+        "product_title": "Golden Daze Ring",
+        "category_type": "product",
+        "price": "₹1,999",
+        "original_price": "₹3,599",
+        "rating": 4.8,
+        "rating_count": 771,
+        "offers": [
+            "Flat 20% off on your first Silver & Demifine Jewellery order above ₹999",
+            "Flat ₹150 off on all Silver & Demifine Jewellery orders above ₹999",
+            "Flat ₹250 off on all Silver & Demifine Jewellery orders above ₹1999",
+            "Flat 10% off on all Silver & Demifine Jewellery orders above ₹2999"
+        ],
+        "product_description": "Adorn yourself with the Golden Daze Ring. A stunning and unique gift under 1000, perfect for any occasion. Shop now and enjoy great value!",
+        "design": [
+            "This ring represents the wave of cherished memories that we feel. Your ring collection wouldn't be complete without this.",
+            "This golden ring has a layered wave design with one layer studded with zircon.",
+            "925 Silver with Gold Plating",
+            "Perfect for sensitive skin",
+            "Adjustable size to ensure no fitting issues",
+            "Ring Diameter: 1.66 cm + Adjustable",
+            "Comes with the GIVA Jewellery kit and authenticity certificate",
+            "Content: Ring",
+            "Net Qty - 1 unit"
+        ],
+        "image_url": [
+            "https://www.giva.co/cdn/shop/files/R0744_1_5487132a-cdad-44a6-bca2-3efd2a3cb125.jpg?v=1783584000&width=416",
+            "https://www.giva.co/cdn/shop/files/R0744_5_b0b60a5f-414e-4b10-af53-5f6a087a634a.jpg?v=1783584000&width=416",
+            "https://www.giva.co/cdn/shop/files/R0744_2_d07336c0-d385-495d-8293-cfa73c93cb59.jpg?v=1783584000&width=416",
+            "https://www.giva.co/cdn/shop/files/R0744_3_233466ba-88f9-4410-bbcd-846f43aeaaa1.jpg?v=1783584000&width=416",
+            "https://www.giva.co/cdn/shop/files/R0744_4_0821a79f-8598-4183-a1e3-f042bd376a8e.jpg?v=1783584000&width=416",
+            "https://www.giva.co/cdn/shop/files/Ringsize_ff640654-1241-4de4-a587-8b53982c199a.jpg?v=1783584000&width=416",
+            "https://www.giva.co/cdn/shop/files/preview_images/fccdbb35280146e191d3839cbd12fe8f.thumbnail.0000000000.jpg?v=1712234077&width=416"
+        ],
+        "product_url": "https://www.giva.co/products/two-layer-ring-in-yellow-gold",
+        "delivery_info": {
+            "available": true,
+            "nearby_stores": "Commercial Street 2"
+        }
+    }
+]
