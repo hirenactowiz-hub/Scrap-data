@@ -28,18 +28,19 @@ headers = {
   'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36',
   'viewport-width': '1280'
 }
+search_keyword = "hoodie"
 
 search_all = search_list(
-    search_keyword='hoodie',
+    search_keyword=search_keyword,
     headers=headers
 )
 
 page_number = find_page(
-    search_keyword='hoodie'
+    search_keyword=search_keyword
 )
 
 product_urls = listing_list(
-    search_all='hoodie',
+    search_all=search_keyword,
     page_number=page_number,
     headers=headers
 )

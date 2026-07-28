@@ -107,7 +107,6 @@ def listing_list(search_all,page_number, headers):
     return collected_urls
 
 def parse_add_desc(html_content: str) -> dict:
-    # 1. Clean HTML tags and standardize line breaks
     cleaned = html_content.replace("&nbsp;", " ").replace("\xa0", " ")
     cleaned = re.sub(r"<br\s*/?>", "\n", cleaned, flags=re.IGNORECASE)
 
@@ -115,24 +114,20 @@ def parse_add_desc(html_content: str) -> dict:
     lines = [line.strip() for line in selector.xpath("//text()").getall() if line.strip()]
     full_text = "\n".join(lines)
 
-    # 2. Extract specific metadata before section splitting
     email_match = re.search(r"[\w\.-]+@[\w\.-]+", full_text)
     phone_match = re.search(r"\+?91\s*\d{2,4}[-\s]?\d{6,8}", full_text)
 
     email = email_match.group(0) if email_match else None
     phone = phone_match.group(0) if phone_match else None
 
-    # 3. Clean full text by removing email/phone lines to keep sections distinct
     clean_lines = []
     for line in lines:
-        # Skip lines that are just contact details
         if (email and email in line) or "Customer care" in line or "tel:" in line:
             continue
         clean_lines.append(line)
 
     cleaned_text = "\n".join(clean_lines)
 
-    # 4. Split by section headers
     keys = ["Material & Care", "Country of Origin", "Manufactured & Sold By"]
     pattern = rf"({'|'.join(re.escape(k) for k in keys)}):?"
 
@@ -144,12 +139,10 @@ def parse_add_desc(html_content: str) -> dict:
         key = parts[i].strip().rstrip(":")
         val = parts[i + 1].strip() if i + 1 < len(parts) else ""
 
-        # Format multi-line values cleanly
         section_lines = [l.strip() for l in val.split("\n") if l.strip()]
         result[key] = " ".join(section_lines)
         i += 2
 
-    # 5. Attach clean standalone contact fields
     if email:
         result["Email"] = email
     if phone:
@@ -228,30 +221,30 @@ def get_product_price(slug):
 def get_product_inventory(slug):
     url = f"https://api.thesouledstore.com/api/v2/product/{slug}/inventory"
     headers = {
-    'accept': 'application/json, text/plain, */*',
-    'accept-language': 'en-US,en;q=0.9',
-    'cache-control': 'no-cache',
-    'device-memory': '16',
-    'downlink': '10',
-    'dpr': '1.5',
-    'ect': '4g',
-    'origin': 'https://www.thesouledstore.com',
-    'pragma': 'no-cache',
-    'priority': 'u=1, i',
-    'referer': 'https://www.thesouledstore.com/',
-    'rtt': '150',
-    'sec-ch-device-memory': '16',
-    'sec-ch-dpr': '1.5',
-    'sec-ch-ua': '"Not;A=Brand";v="8", "Chromium";v="150", "Google Chrome";v="150"',
-    'sec-ch-ua-mobile': '?0',
-    'sec-ch-ua-platform': '"Windows"',
-    'sec-ch-viewport-width': '1280',
-    'sec-fetch-dest': 'empty',
-    'sec-fetch-mode': 'cors',
-    'sec-fetch-site': 'same-site',
-    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36',
-    'viewport-width': '1280',
-    'Cookie': '_scid=Waym8TVMFdxSX6A1goe0Ao-xYnjja8hg; unbxd.userId=uid-1785127329847-18157; _gcl_au=1.1.1947181253.1785127331; _ga=GA1.1.1795366617.1785127331; _clck=1b907rr%5E2%5Eg83%5E0%5E2399; _fbp=fb.1.1785127330967.637834645524538577; _sctr=1%7C1785090600000; _uetsid=88453a30897511f1a81d71fd971b3b74; _uetvid=884536b0897511f1876f013157cb0627; _clsk=199qcm3%5E1785144810559%5E2%5E1%5El.clarity.ms%2Fcollect; _ga_4W6E0TYD2Y=GS2.1.s1785144835$o4$g0$t1785144835$j60$l0$h0; _ga_NXPBDLCSFK=GS2.1.s1785144835$o4$g0$t1785144835$j60$l0$h0; _scid_r=fiym8TVMFdxSX6A1goe0Ao-xYnjja8hgTX_BTQ; __tr_luptv=1785144839195'
+        'accept': 'application/json, text/plain, */*',
+        'accept-language': 'en-US,en;q=0.9',
+        'cache-control': 'no-cache',
+        'device-memory': '16',
+        'downlink': '10',
+        'dpr': '1.5',
+        'ect': '4g',
+        'origin': 'https://www.thesouledstore.com',
+        'pragma': 'no-cache',
+        'priority': 'u=1, i',
+        'referer': 'https://www.thesouledstore.com/',
+        'rtt': '150',
+        'sec-ch-device-memory': '16',
+        'sec-ch-dpr': '1.5',
+        'sec-ch-ua': '"Not;A=Brand";v="8", "Chromium";v="150", "Google Chrome";v="150"',
+        'sec-ch-ua-mobile': '?0',
+        'sec-ch-ua-platform': '"Windows"',
+        'sec-ch-viewport-width': '1280',
+        'sec-fetch-dest': 'empty',
+        'sec-fetch-mode': 'cors',
+        'sec-fetch-site': 'same-site',
+        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36',
+        'viewport-width': '1280',
+        'Cookie': '_scid=Waym8TVMFdxSX6A1goe0Ao-xYnjja8hg; unbxd.userId=uid-1785127329847-18157; _gcl_au=1.1.1947181253.1785127331; _ga=GA1.1.1795366617.1785127331; _clck=1b907rr%5E2%5Eg83%5E0%5E2399; _fbp=fb.1.1785127330967.637834645524538577; _sctr=1%7C1785090600000; _uetsid=88453a30897511f1a81d71fd971b3b74; _uetvid=884536b0897511f1876f013157cb0627; _clsk=199qcm3%5E1785144810559%5E2%5E1%5El.clarity.ms%2Fcollect; _ga_4W6E0TYD2Y=GS2.1.s1785144835$o4$g0$t1785144835$j60$l0$h0; _ga_NXPBDLCSFK=GS2.1.s1785144835$o4$g0$t1785144835$j60$l0$h0; _scid_r=fiym8TVMFdxSX6A1goe0Ao-xYnjja8hgTX_BTQ; __tr_luptv=1785144839195'
     }
 
     
@@ -291,8 +284,6 @@ def product_detail(headers, product_urls):
                 }
                 product_data.append(product_item)
                 print(f"Sucessfull Url :{item_url}")
-            
-            # print(product_data)
 
     with open(r"C:\Users\hiren.chauhan\Desktop\HirenGit\soulstore\products.json", "w", encoding="utf-8") as f:
         json.dump(product_data, f, indent=4, ensure_ascii=False)
